@@ -7,7 +7,7 @@ const dbConfig = {
   database: process.env.DB_DATABASE,
   port: parseInt(process.env.DB_PORT, 10),
   waitForConnections: true,
-  connectionLimit: 5, 
+  connectionLimit: 10, 
   queueLimit: 0,       
   connectTimeout: 10000 
 };
