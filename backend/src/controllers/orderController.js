@@ -83,35 +83,35 @@ exports.createOrder = async (req, res) => {
     }
 };
 
-// exports.getMyOrders = async (req, res) => {
-//   try {
-//     if (!req.user || !req.user.phone) {
-//         return res.status(401).json({ message: 'Người dùng chưa được xác thực.' });
-//     }
-//     const ordersFromDb = await Order.findByUserPhone(req.user.phone);
-//     const ordersWithItems = await Promise.all(ordersFromDb.map(async (order) => {
-//         const orderDetails = await Order.findById(order.id);
-//         return orderDetails;
-//     }));
-//     res.json(ordersWithItems);
-//   } catch (error) {
-//     console.error('Lỗi lấy đơn hàng của tôi:', error);
-//     res.status(500).json({ message: 'Lỗi máy chủ khi lấy đơn hàng.', error: error.message });
-//   }
-// };
-
 exports.getMyOrders = async (req, res) => {
   try {
     if (!req.user || !req.user.phone) {
         return res.status(401).json({ message: 'Người dùng chưa được xác thực.' });
     }
-    const ordersWithItems = await Order.findByUserPhone(req.user.phone);
+    const ordersFromDb = await Order.findByUserPhone(req.user.phone);
+    const ordersWithItems = await Promise.all(ordersFromDb.map(async (order) => {
+        const orderDetails = await Order.findById(order.id);
+        return orderDetails;
+    }));
     res.json(ordersWithItems);
   } catch (error) {
     console.error('Lỗi lấy đơn hàng của tôi:', error);
     res.status(500).json({ message: 'Lỗi máy chủ khi lấy đơn hàng.', error: error.message });
   }
 };
+
+// exports.getMyOrders = async (req, res) => {
+//   try {
+//     if (!req.user || !req.user.phone) {
+//         return res.status(401).json({ message: 'Người dùng chưa được xác thực.' });
+//     }
+//     const ordersWithItems = await Order.findByUserPhone(req.user.phone);
+//     res.json(ordersWithItems);
+//   } catch (error) {
+//     console.error('Lỗi lấy đơn hàng của tôi:', error);
+//     res.status(500).json({ message: 'Lỗi máy chủ khi lấy đơn hàng.', error: error.message });
+//   }
+// };
 
 exports.getOrderById = async (req, res) => {
   try {

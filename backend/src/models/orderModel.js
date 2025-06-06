@@ -54,65 +54,65 @@ const Order = {
     return { ...orderRows[0], items: itemRows };
   },
 
-  // async findByUserPhone(userPhone) {
-  //   const sql = 'SELECT * FROM orders WHERE user_phone = ? ORDER BY order_timestamp DESC';
-  //   const [rows] = await pool.query(sql, [userPhone]);
-  //   return rows;
-  // },
-
-    async findByUserPhone(userPhone) {
-    const sql = `
-        SELECT
-            o.*,
-            oi.id as item_id,
-            oi.product_id,
-            oi.quantity,
-            oi.price_at_purchase,
-            oi.item_notes,
-            p.title as product_title,
-            p.img_url as product_img_url_from_db
-        FROM orders o
-        LEFT JOIN order_items oi ON o.id = oi.order_id
-        LEFT JOIN products p ON oi.product_id = p.id
-        WHERE o.user_phone = ?
-        ORDER BY o.order_timestamp DESC, oi.id ASC
-    `;
+  async findByUserPhone(userPhone) {
+    const sql = 'SELECT * FROM orders WHERE user_phone = ? ORDER BY order_timestamp DESC';
     const [rows] = await pool.query(sql, [userPhone]);
-
-    const ordersMap = new Map();
-    rows.forEach(row => {
-        if (!ordersMap.has(row.id)) {
-            ordersMap.set(row.id, {
-                id: row.id,
-                user_phone: row.user_phone,
-                customer_name: row.customer_name,
-                customer_phone: row.customer_phone,
-                delivery_address: row.delivery_address,
-                delivery_type: row.delivery_type,
-                delivery_date: row.delivery_date,
-                delivery_time_slot: row.delivery_time_slot,
-                notes: row.notes,
-                total_amount: row.total_amount,
-                status: row.status,
-                order_timestamp: row.order_timestamp,
-                updated_at: row.updated_at,
-                items: []
-            });
-        }
-        if (row.item_id) { 
-            ordersMap.get(row.id).items.push({
-                item_id: row.item_id,
-                product_id: row.product_id,
-                quantity: row.quantity,
-                price_at_purchase: row.price_at_purchase,
-                item_notes: row.item_notes,
-                product_title: row.product_title,
-                product_img_url: row.product_id ? `/api/products/image/${row.product_id}` : null
-            });
-        }
-    });
-    return Array.from(ordersMap.values());
+    return rows;
   },
+
+  //   async findByUserPhone(userPhone) {
+  //   const sql = `
+  //       SELECT
+  //           o.*,
+  //           oi.id as item_id,
+  //           oi.product_id,
+  //           oi.quantity,
+  //           oi.price_at_purchase,
+  //           oi.item_notes,
+  //           p.title as product_title,
+  //           p.img_url as product_img_url_from_db
+  //       FROM orders o
+  //       LEFT JOIN order_items oi ON o.id = oi.order_id
+  //       LEFT JOIN products p ON oi.product_id = p.id
+  //       WHERE o.user_phone = ?
+  //       ORDER BY o.order_timestamp DESC, oi.id ASC
+  //   `;
+  //   const [rows] = await pool.query(sql, [userPhone]);
+
+  //   const ordersMap = new Map();
+  //   rows.forEach(row => {
+  //       if (!ordersMap.has(row.id)) {
+  //           ordersMap.set(row.id, {
+  //               id: row.id,
+  //               user_phone: row.user_phone,
+  //               customer_name: row.customer_name,
+  //               customer_phone: row.customer_phone,
+  //               delivery_address: row.delivery_address,
+  //               delivery_type: row.delivery_type,
+  //               delivery_date: row.delivery_date,
+  //               delivery_time_slot: row.delivery_time_slot,
+  //               notes: row.notes,
+  //               total_amount: row.total_amount,
+  //               status: row.status,
+  //               order_timestamp: row.order_timestamp,
+  //               updated_at: row.updated_at,
+  //               items: []
+  //           });
+  //       }
+  //       if (row.item_id) { 
+  //           ordersMap.get(row.id).items.push({
+  //               item_id: row.item_id,
+  //               product_id: row.product_id,
+  //               quantity: row.quantity,
+  //               price_at_purchase: row.price_at_purchase,
+  //               item_notes: row.item_notes,
+  //               product_title: row.product_title,
+  //               product_img_url: row.product_id ? `/api/products/image/${row.product_id}` : null
+  //           });
+  //       }
+  //   });
+  //   return Array.from(ordersMap.values());
+  // },
 
   async findAll(filters = {}) {
     let sql = 'SELECT * FROM orders WHERE 1=1';
