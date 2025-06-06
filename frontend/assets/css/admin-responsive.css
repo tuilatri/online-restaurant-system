@@ -1,0 +1,314 @@
+:root {
+    --orange: #fd8166;
+    --lightest-gray: rgb(249, 249, 249);
+}
+
+.page-title {
+    color: var(--lightest-gray);
+    background-color: var(--orange);
+    text-align: center;
+    border-radius: 2rem;
+    padding: 0.5rem;
+    text-transform: uppercase;
+}
+
+@media only screen and (max-width: 1200px) {
+    .admin-control-center {
+        margin: 1rem -1rem;
+        width: 25rem;
+    }
+
+    select{
+        margin-bottom: 10px;
+    }
+
+    #tinh-trang,.form-control-date {
+        width: 135px;
+    }
+
+    .status-no-complete,.status-complete {
+        display: inline;
+        white-space: nowrap;
+    }
+
+    .list-info p,.list-old-price {
+        display: none;
+    }
+
+    .btn-reset-order {
+        height: 40px;
+        margin-top: 0px;
+    }
+
+    .header {
+        z-index: 100;
+        display: flex;
+    }
+
+    .form-search {
+        position: fixed;
+        left: 60px;
+        top: 10px;
+        width: 70%;
+        z-index: 101;
+    }
+
+    .sidebar{
+        height: calc(100vh - var(--header-height));
+        top: var(--header-height);
+    }
+
+    .cards{
+        flex-wrap: wrap;
+    }
+}
+
+@media only screen and (max-width: 786px) {
+    
+    .order-statistical{
+        flex-wrap: wrap;
+    }
+    .order-statistical-item {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .section {
+        padding: 20px 10px;
+    }
+    
+    .list-left>img {
+        max-width: 140px;
+        min-width: 140px;
+        height: 110px;
+    }
+}
+
+@media only screen and (max-width: 615px) {
+    .sidebar {
+        overflow: hidden;
+        /* width: 70%; */
+        width: 0;
+        flex-direction: column;
+        position:fixed;
+        background-color: #fff;
+        z-index: 99;
+        box-shadow: 0 1px 5px 0 rgb(0 0 0 / 20%);
+        transition: width var(--animation-duration) var(--animation-timing-curve);
+        left: 0;
+        top: var(--header-height);
+        height: calc(100vh - var(--header-height));
+    }
+    
+    .sidebar .hidden-sidebar {
+        /* opacity: 1; */
+        opacity: 0;
+        text-align: center;
+        line-height: 0rem;
+        transition: opacity var(--animation-duration) var(--animation-timing-curve) 0.1s; /* Slight delay */
+    }
+    
+    .sidebar .channel-logo {
+        margin-top: -2rem;
+        /* width: 100%; */
+        width: 0; /* Start with 0 width */
+        transition: width var(--animation-duration) var(--animation-timing-curve);
+    }
+    
+    .sidebar.open .channel-logo {
+        width: 100%; /* Expand to full width when open */
+    }
+    
+    .sidebar .channel-logo >img {
+        width: 100px;
+        height: 100px;
+        transition: transform var(--animation-duration) var(--animation-timing-curve);
+    }
+    
+    .your-channel {
+        margin-top: 4.5rem;
+    }
+    
+    .sidebar .middle-sidebar {
+        margin-top: 5rem;
+        opacity: 0; /* Start hidden */
+        transition: opacity var(--animation-duration) var(--animation-timing-curve) 0.15s; /* Slight delay */
+    }
+
+    .sidebar.open .middle-sidebar {
+        opacity: 1; /* Fade in when open */
+    }
+    
+    .sidebar.open {
+        /* transition: width var(--animation-duration) var(--animation-timing-curve);
+        display: none; */
+        width: 70%; /* Expand to 70% when open */
+        display: flex; /* Keep it flex when open */
+    }
+
+    .sidebar.open .hidden-sidebar {
+        opacity: 1; /* Fade in when open */
+    }
+
+    .profile{
+        margin-right: -1rem;
+    }
+
+    .add-product.open .upload-image-preview {
+        width: 100%;
+    }
+
+    .sidebar:not(.open) .channel-logo >img {
+        transform: scale(0); /* Shrink image when closed */
+    }
+
+    .sidebar-overlay {
+        position: fixed;
+        top: var(--header-height);
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 98;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity var(--animation-duration) var(--animation-timing-curve);
+    }
+    
+    .sidebar-overlay.active {
+        opacity: 1;
+        pointer-events: all;
+    }
+}
+
+@media only screen and (max-width: 470px) {
+
+    .list-left>img{
+        min-width: 80px;
+        max-width: 80px;
+        height: 80px;
+    }
+
+    .header {
+        width: 100%;
+    }
+
+    .list-info h4 {
+        width: 130px;
+    }
+
+    .list-current-price {
+        display:none;
+    }
+
+    .list-tool{
+        flex-direction: column;
+    }
+
+    .btn-edit {
+        margin-right:0;
+        margin-bottom:5px;
+    }
+
+    .admin-control-right{
+        flex-wrap: wrap;
+    }
+
+    .fillter-date>div>label{
+        margin-bottom: 5px;
+        display: inline-block;
+    }
+
+    .btn-reset-order{
+        margin-left: 0;
+    }
+
+    .add-product.open .modal-container {
+        width: 100%;
+        margin-left: 0px;
+    }
+
+    .add-product.open .upload-image-preview {
+        width: 100%;
+    }
+    
+    .add-product.open .form-submit i {
+        margin-right: 4px;
+    }
+
+    .modal .signup.open .modal-container {
+        width: 100%;
+    }
+
+    .fillter-date>div {
+        margin-bottom: 10px;
+    }
+
+    #btn-reset-order{
+        margin-left: 0;
+    }
+
+    .btn-detail {
+        margin-top: 10px;
+    }
+
+    .control-table {
+        display: flex;
+        flex-wrap: nowrap;
+    }
+    .control-table {
+        display: flex;
+        flex-wrap: nowrap;
+    }
+
+    .control-table .btn-edit{
+        margin-top: 0!important;
+    }
+
+    .modal{
+        z-index: 102;
+    }
+
+    .modal-container {
+        min-height: 100vh;
+    }
+
+    .add-product-form,.modal-detail-order {
+        flex-direction: column;
+    }
+
+    .add-product-form>div{
+        width: 100%;
+    }
+
+    .modal-detail-order>div {
+        width: 100%;
+    }
+
+    .modal-detail-order .modal-detail-left {
+        overflow-y: auto;
+    }
+
+
+    #tinh-trang,#tinh-trang-user,#the-loai-tk {
+        margin-left: 0;
+    }
+
+    .fillter-date.fillter-date-thongke{
+        display: flex;
+    }
+
+    #toast {
+        min-width: 300px;
+        max-width: 350px;
+        z-index: 9999;
+    }
+
+    .admin-control-left{
+        margin-bottom: 10px;
+    }
+
+    .card-single{
+        width: 100%!important;
+    }
+}
