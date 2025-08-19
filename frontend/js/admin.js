@@ -169,7 +169,7 @@ async function showProductArr(arr) {
         imgSrc = './assets/img/blank-image.png';
       } else if (imgSrc.startsWith('/uploads')) {
         // imgSrc = `http://localhost:5000${imgSrc}`;
-        imgSrc = `https://online-restaurant-system.onrender.com${imgSrc}`;
+        imgSrc = `https://restaurant-system-1e3p.onrender.com${imgSrc}`;
       } else if (imgSrc.startsWith('/assets') || imgSrc.startsWith('./assets')) {
         // Handle both /assets and ./assets for frontend images
         imgSrc = imgSrc.startsWith('/assets') ? `.${imgSrc}` : imgSrc;
@@ -305,7 +305,7 @@ async function editProduct(id) {
     let imgSrc = product.img_url || "./assets/img/blank-image.png";
     if (imgSrc.startsWith('/uploads')) {
       // imgSrc = `http://localhost:5000${imgSrc}`;
-      imgSrc = `https://online-restaurant-system.onrender.com${imgSrc}`;
+      imgSrc = `https://restaurant-system-1e3p.onrender.com${imgSrc}`;
     } else if (imgSrc.startsWith('/assets')) {
       imgSrc = `.${imgSrc}`;
     }
@@ -689,7 +689,7 @@ async function detailOrderAdmin(orderId) {
         let imgSrc = item.product_img_url || "./assets/img/blank-image.png";
         if (imgSrc.startsWith('/uploads')) {
           // imgSrc = `http://localhost:5000${imgSrc}`;
-          imgSrc = `https://online-restaurant-system.onrender.com${imgSrc}`;
+          imgSrc = `https://restaurant-system-1e3p.onrender.com${imgSrc}`;
         } else if (imgSrc.startsWith('/assets')) {
           imgSrc = `.${imgSrc}`;
         }
@@ -982,7 +982,7 @@ function showThongKeTable(reportData) {
       let imgSrc = item.product_img_url || "./assets/img/blank-image.png";
       if (imgSrc.startsWith('/uploads')) {
         // imgSrc = `http://localhost:5000${imgSrc}`;
-        imgSrc = `https://online-restaurant-system.onrender.com${imgSrc}`;
+        imgSrc = `https://restaurant-system-1e3p.onrender.com${imgSrc}`;
       } else if (imgSrc.startsWith('/assets')) {
         imgSrc = `.${imgSrc}`;
       }

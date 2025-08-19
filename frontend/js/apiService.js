@@ -1,8 +1,7 @@
 (function() {
     'use strict';
 
-    // const API_BASE_URL = 'http://localhost:5000/api';
-    const API_BASE_URL = 'https://online-restaurant-system.onrender.com/api';
+    const API_BASE_URL = 'https://restaurant-system-1e3p.onrender.com/api';
 
     function getToken() {
         return localStorage.getItem('UserToken');
