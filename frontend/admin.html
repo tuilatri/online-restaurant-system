@@ -7,6 +7,7 @@
     <link href='./assets/img/favicon.png' rel='icon' type='image/icon' />
     <link rel="stylesheet" href="assets/css/admin.css">
     <link rel="stylesheet" href="./assets/css/toast-message.css">
+    <link rel="stylesheet" href="assets/css/dark-mode.css">
     <link href="./assets/font/font-awesome-pro-v6-6.2.0/css/all.min.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="./assets/css/admin-responsive.css">
     <title>Quản lý cửa hàng</title>
@@ -64,6 +65,15 @@
             </div>
             <div class="bottom-sidebar">
                 <ul class="sidebar-list">
+                    <li class="sidebar-list-item">
+                        <a href="javascript:;" class="sidebar-link" id="theme-toggle">
+                            <div class="sidebar-icon">
+                                <i class="fa-light fa-moon"></i>
+                                <i class="fa-light fa-sun"></i>
+                            </div>
+                            <div class="hidden-sidebar">Chế độ tối</div>
+                        </a>
+                    </li>
                     <li class="sidebar-list-item user-logout">
                         <a href="index.html" class="sidebar-link">
                             <div class="sidebar-icon"><i class="fa-thin fa-circle-chevron-left"></i></div>
@@ -469,5 +479,6 @@
     <script src="./js/apiService.js"></script>   
     <script src="./js/admin.js"></script>
     <script src="./js/toast-message.js"></script>
+    <script src="./js/dark-mode.js"></script>
 </body>
 </html>
