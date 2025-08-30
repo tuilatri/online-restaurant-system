@@ -110,7 +110,8 @@ body.dark-mode .menu-link {
   color: var(--text-primary);
 }
 body.dark-mode .auth-container, 
-body.dark-mode .header-middle-right-item > span {
+body.dark-mode .header-middle-right-item > span,
+body.dark-mode .language-switcher {
   color: var(--text-primary);
 }
 body.dark-mode .text-tk i {
@@ -181,6 +182,14 @@ body.dark-mode .cart-footer {
   background-color: var(--background-secondary);
   border-color: var(--border-primary);
 }
+
+/* FIX: Product detail modal footer */
+body.dark-mode .modal-footer {
+  background-color: var(--background-secondary);
+  border-top-color: var(--border-primary);
+}
+/* END FIX */
+
 body.dark-mode .cart-header-title {
   color: var(--text-primary);
 }

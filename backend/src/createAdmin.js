@@ -7,8 +7,8 @@ const { hashPassword } = require('./utils/passwordUtils');
 async function createAdminAccount() {
   const adminData = {
     fullname: 'Super Admin', 
-    phone: '0901772837',         
-    password: 'leminhtuan123', 
+    phone: '0909773173',         
+    password: '0812-haminhtri', 
     email: 'admin@ttvres.com',
     address: 'TTVRes Headquarters',
     user_type: 1,
