@@ -1,0 +1,453 @@
+/* frontend/assets/css/dark-mode.css */
+
+/* Define light theme variables */
+:root {
+  --background-primary: #fff;
+  --background-secondary: #f5f5f5;
+  --background-tertiary: #f0f0f0;
+  --background-quaternary: #f2f2f2;
+  --background-highlight: #fff6ed;
+  
+  --text-primary: #333;
+  --text-secondary: #666;
+  --text-tertiary: #888;
+  --text-link: #2c2c2c;
+  --text-on-primary: #fff;
+
+  --border-primary: #e5e5e5;
+  --border-secondary: #eee;
+  --border-tertiary: #dae2e6;
+  
+  --primary-accent: #fd8166; /* orange/red */
+  --success-color: #27ae60;
+  --error-color: #f04e2e;
+
+  --shadow-color: rgba(0, 0, 0, 0.1);
+  --shadow-color-light: rgba(0, 0, 0, 0.03);
+  --shadow-color-inset: rgba(0, 0, 0, 0.05);
+
+  --modal-overlay: rgba(0, 0, 0, 0.6);
+}
+
+/* Define dark theme variables */
+body.dark-mode {
+  --background-primary: #121212;
+  --background-secondary: #1e1e1e;
+  --background-tertiary: #2a2a2a;
+  --background-quaternary: #242424;
+  --background-highlight: #3a2e28;
+  
+  --text-primary: #e0e0e0;
+  --text-secondary: #b0b0b0;
+  --text-tertiary: #999;
+  --text-link: #e0e0e0;
+  --text-on-primary: #fff;
+
+  --border-primary: #444;
+  --border-secondary: #333;
+  --border-tertiary: #555;
+  
+  --primary-accent: #fd8166;
+  --success-color: #27ae60;
+  --error-color: #f04e2e;
+
+  --shadow-color: rgba(0, 0, 0, 0.5);
+  --shadow-color-light: rgba(0, 0, 0, 0.1);
+  --shadow-color-inset: rgba(255, 255, 255, 0.05);
+
+  --modal-overlay: rgba(0, 0, 0, 0.8);
+}
+
+/* General Styles */
+body.dark-mode {
+  background-color: var(--background-primary);
+  color: var(--text-primary);
+}
+
+/* --- THEME TOGGLE BUTTON --- */
+.theme-toggle-btn {
+  background: transparent;
+  border: 1px solid var(--border-primary);
+  border-radius: 50%;
+  cursor: pointer;
+  width: 35px;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.theme-toggle-btn i {
+  color: var(--text-primary);
+  font-size: 18px !important;
+  margin: 0 !important;
+}
+
+#theme-toggle .fa-sun,
+.theme-toggle-btn .fa-sun {
+    display: none;
+}
+body.dark-mode #theme-toggle .fa-sun,
+body.dark-mode .theme-toggle-btn .fa-sun {
+    display: block;
+}
+body.dark-mode #theme-toggle .fa-moon,
+body.dark-mode .theme-toggle-btn .fa-moon {
+    display: none;
+}
+
+
+/* --- INDEX.HTML STYLES --- */
+body.dark-mode header,
+body.dark-mode .header-bottom,
+body.dark-mode .advanced-search {
+  background-color: var(--background-secondary);
+  box-shadow: 0 3px 5px 0 var(--shadow-color);
+}
+body.dark-mode .header-middle {
+  box-shadow: inset 0px -0.5px 0px var(--border-primary);
+}
+body.dark-mode .menu-link {
+  color: var(--text-primary);
+}
+body.dark-mode .auth-container, 
+body.dark-mode .header-middle-right-item > span,
+body.dark-mode .language-switcher {
+  color: var(--text-primary);
+}
+body.dark-mode .text-tk i {
+  color: var(--text-primary) !important;
+}
+body.dark-mode .form-search-input,
+body.dark-mode .search-btn,
+body.dark-mode #advanced-search-category-select,
+body.dark-mode .advanced-search-price input {
+  background-color: var(--background-tertiary);
+  color: var(--text-primary);
+  border-color: var(--border-secondary);
+}
+body.dark-mode .advanced-search span {
+  color: var(--text-primary);
+}
+body.dark-mode .home-service-item {
+  background-color: var(--background-secondary);
+  box-shadow: 0px 1px 9px 2px var(--shadow-color);
+}
+body.dark-mode .home-title {
+  color: var(--text-primary);
+}
+body.dark-mode .card-product {
+  background-color: var(--background-secondary);
+  border-color: var(--border-primary);
+}
+body.dark-mode .card-title-link {
+  color: var(--text-primary);
+}
+body.dark-mode .page-nav-item a {
+  color: var(--text-primary);
+  border-color: var(--text-primary);
+}
+body.dark-mode .page-nav-item.active a,
+body.dark-mode .page-nav-item a:hover {
+  background-color: var(--primary-accent);
+  color: var(--text-on-primary);
+  border-color: var(--primary-accent);
+}
+body.dark-mode .modal-container {
+  background-color: var(--background-secondary);
+  color: var(--text-primary);
+}
+body.dark-mode .modal {
+  background-color: var(--modal-overlay);
+}
+body.dark-mode .text-note {
+  background-color: var(--background-tertiary);
+  color: var(--text-primary);
+}
+body.dark-mode .form-control {
+  background-color: var(--background-tertiary);
+  color: var(--text-primary);
+  border-color: var(--border-primary);
+}
+body.dark-mode .form-close {
+  color: var(--text-on-primary);
+}
+body.dark-mode .change-login {
+  color: var(--text-secondary);
+}
+body.dark-mode .cart-container {
+  background-color: var(--background-secondary);
+}
+body.dark-mode .cart-header,
+body.dark-mode .cart-footer {
+  background-color: var(--background-secondary);
+  border-color: var(--border-primary);
+}
+
+/* FIX: Product detail modal footer */
+body.dark-mode .modal-footer {
+  background-color: var(--background-secondary);
+  border-top-color: var(--border-primary);
+}
+/* END FIX */
+
+body.dark-mode .cart-header-title {
+  color: var(--text-primary);
+}
+body.dark-mode .cart-close {
+  background-color: var(--background-secondary);
+  border-color: var(--text-primary);
+  color: var(--text-primary);
+}
+body.dark-mode .cart-item {
+  border-color: var(--border-primary);
+}
+body.dark-mode .cart-item-title, body.dark-mode .cart-total-price .text-tt {
+  color: var(--text-primary);
+}
+body.dark-mode button.them-mon {
+  background-color: var(--background-tertiary);
+  color: var(--text-primary);
+  border-color: var(--border-primary);
+}
+body.dark-mode .footer {
+  background-color: var(--background-quaternary);
+}
+body.dark-mode .footer-top {
+  border-color: var(--border-primary);
+}
+body.dark-mode .footer-top-subs-title {
+  color: var(--text-primary);
+}
+body.dark-mode .form-ground-input {
+  background-color: var(--background-tertiary);
+  color: var(--text-primary);
+  border-color: var(--border-primary);
+}
+body.dark-mode .widget-title, body.dark-mode .widget-row-col-content p, body.dark-mode .contact-content span {
+  color: var(--text-primary);
+}
+body.dark-mode .widget-social-item {
+  border-color: var(--text-primary);
+}
+body.dark-mode .widget-social-item i {
+  color: var(--text-primary);
+}
+body.dark-mode .widget-contact-item a {
+  color: var(--text-primary);
+}
+body.dark-mode .copyright-wrap {
+  background-color: var(--background-secondary);
+  color: var(--text-primary);
+  border-color: var(--border-primary);
+}
+body.dark-mode .checkout-page {
+  background-color: var(--background-primary);
+}
+body.dark-mode .checkout-header, body.dark-mode .checkout-row, body.dark-mode .checkout-col-right {
+  background-color: var(--background-secondary);
+  color: var(--text-primary);
+  border-color: var(--border-primary);
+}
+body.dark-mode .checkout-col-title {
+  border-color: var(--border-primary);
+  color: var(--text-primary);
+}
+body.dark-mode .type-order-btn {
+  background-color: var(--background-tertiary);
+  color: var(--text-secondary);
+}
+body.dark-mode .pick-date {
+  background: var(--background-tertiary);
+  color: var(--text-secondary);
+}
+body.dark-mode .note-order {
+  background-color: var(--background-highlight);
+  color: var(--text-primary);
+}
+body.dark-mode .priceFlx, body.dark-mode .policy-note {
+  color: var(--text-secondary);
+}
+
+/* FIX: Account info page background */
+body.dark-mode #account-user {
+  background-color: var(--background-primary);
+}
+body.dark-mode .main-account {
+  background-color: var(--background-secondary);
+  border-color: var(--border-tertiary);
+}
+/* END FIX */
+
+body.dark-mode .main-account-header {
+  border-color: var(--border-secondary);
+}
+body.dark-mode .order-history-group {
+  border-color: var(--border-primary);
+}
+
+/* FIX: Order history text colors */
+body.dark-mode .order-history-info h4 {
+  color: var(--text-primary);
+}
+body.dark-mode .order-history-note {
+  color: var(--text-secondary);
+}
+/* END FIX */
+
+body.dark-mode #order-history-detail, body.dark-mode .order-history-status-sp {
+  background-color: var(--background-tertiary);
+  color: var(--text-primary);
+}
+body.dark-mode .order-history-status-sp.complete, body.dark-mode .order-history-status-sp.no-complete {
+  color: var(--text-on-primary);
+}
+body.dark-mode .header-middle-right-menu {
+    background-color: var(--background-secondary);
+    border-color: var(--border-primary);
+}
+body.dark-mode .header-middle-right-menu li a {
+    color: var(--text-primary);
+}
+body.dark-mode .header-middle-right-menu li:hover {
+    background-color: var(--background-tertiary);
+}
+body.dark-mode .header-middle-right-menu .border {
+    border-top: 1px solid var(--border-primary);
+}
+
+/* --- ADMIN.HTML STYLES --- */
+body.dark-mode .header, body.dark-mode .sidebar {
+  background-color: var(--background-secondary);
+  border-color: var(--border-primary);
+}
+body.dark-mode .menu-icon {
+  color: var(--text-secondary);
+}
+body.dark-mode .sidebar-link {
+  color: var(--text-secondary);
+}
+body.dark-mode .sidebar-list-item.active {
+  color: var(--primary-accent);
+  background-color: var(--background-tertiary);
+}
+body.dark-mode .sidebar-list-item:hover {
+  background-color: var(--background-tertiary);
+}
+body.dark-mode .your-channel {
+  color: var(--text-primary);
+}
+body.dark-mode .content, body.dark-mode .section {
+  background-color: var(--background-primary);
+}
+body.dark-mode .page-title {
+  color: var(--text-on-primary);
+}
+body.dark-mode .cards .card-single {
+  background: var(--background-secondary);
+  box-shadow: inset 5px 5px 5px var(--shadow-color-inset), inset -5px -5px 5px var(--shadow-color-inset), 5px 5px 5px var(--shadow-color-inset), -5px -5px 5px var(--shadow-color-inset);
+}
+body.dark-mode .cards .card-single .box {
+  background-color: var(--background-secondary);
+  box-shadow: 0 10px 20px var(--shadow-color);
+  color: var(--text-primary);
+}
+body.dark-mode .cards .card-single .box h2,
+body.dark-mode .cards .card-single .box h3,
+body.dark-mode .cards .card-single .box p {
+  color: var(--text-primary);
+}
+body.dark-mode .cards .card-single:hover .box {
+  background: linear-gradient(45deg, var(--primary-accent), orange);
+}
+body.dark-mode .cards .card-single:hover .box h2,
+body.dark-mode .cards .card-single:hover .box h3,
+body.dark-mode .cards .card-single:hover .box p {
+    color: #fff;
+}
+body.dark-mode select,
+body.dark-mode #tinh-trang,
+body.dark-mode .form-control-date,
+body.dark-mode .search-btn,
+body.dark-mode .form-search-input {
+  background-color: var(--background-tertiary);
+  color: var(--text-primary);
+  border-color: var(--border-secondary);
+}
+body.dark-mode .list {
+  background-color: var(--background-secondary);
+  border-color: var(--border-primary);
+}
+body.dark-mode .list-info h4 {
+  color: var(--text-primary);
+}
+body.dark-mode .list-note {
+  color: var(--text-secondary);
+}
+body.dark-mode .btn-detail,
+body.dark-mode .btn-edit,
+body.dark-mode .admin-control-right button {
+  background-color: var(--background-tertiary);
+  color: var(--text-primary);
+}
+body.dark-mode .admin-control-right button:hover {
+    background-color: var(--primary-accent);
+    color: var(--text-on-primary);
+}
+body.dark-mode .table {
+  background-color: var(--background-secondary);
+}
+body.dark-mode thead td {
+  background: var(--background-tertiary);
+  color: var(--text-primary);
+}
+body.dark-mode tr {
+  border-color: var(--border-primary);
+  color: var(--text-primary);
+}
+body.dark-mode .order-statistical-item {
+  box-shadow: 0px 1px 5px 2px var(--shadow-color);
+}
+body.dark-mode .order-statistical-item-content-desc {
+  color: var(--text-tertiary);
+}
+body.dark-mode .modal.add-product .modal-container,
+body.dark-mode .modal.signup .modal-container,
+body.dark-mode .modal.detail-order .modal-container {
+  background-color: var(--background-secondary);
+}
+body.dark-mode .modal-container-title,
+body.dark-mode .form-title {
+  color: var(--text-primary);
+}
+body.dark-mode .modal-content-left {
+  border-color: var(--border-primary);
+}
+body.dark-mode .product-desc {
+  background-color: var(--background-tertiary);
+  color: var(--text-primary);
+}
+body.dark-mode .modal-detail-bottom {
+    border-color: var(--border-secondary);
+}
+body.dark-mode .detail-order-item-b {
+    background-color: var(--background-tertiary);
+}
+body.dark-mode .detail-order-item {
+    border-color: var(--border-secondary);
+}
+body.dark-mode .price-total .thanhtien {
+    color: var(--text-tertiary);
+}
+body.dark-mode #toast .toast {
+  background-color: var(--background-secondary);
+  box-shadow: 0 5px 8px rgba(0, 0, 0, 0.5);
+}
+body.dark-mode #toast .toast__title {
+  color: var(--text-primary);
+}
+body.dark-mode #toast .toast__msg {
+  color: var(--text-secondary);
+}
+body.dark-mode .access-denied-section {
+  color: var(--text-primary);
+}
