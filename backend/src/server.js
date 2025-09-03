@@ -38,6 +38,14 @@ app.get('/api', (req, res) => {
   res.json({ message: 'Welcome to Dining Verse Backend API!' });
 });
 
+app.get('/', (req, res) => {
+  res.send('Backend is running!');
+});
+
+app.get('/health', (req, res) => {
+  res.status(200).json({ status: 'ok' });
+});
+
 app.use(notFound);
 app.use(errorHandler);
 
