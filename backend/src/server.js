@@ -44,7 +44,6 @@ app.use(errorHandler);
 testConnection().then(isConnected => {
   if (isConnected) {
     app.listen(PORT, () => {
-      console.log(`Backend server is running on http://localhost:${PORT}`);
       console.log(`Backend server is running on http://0.0.0.0:${PORT}`);
       console.log(`Environment: ${process.env.NODE_ENV}`);
     });
