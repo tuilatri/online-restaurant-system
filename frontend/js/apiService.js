@@ -1,7 +1,11 @@
 (function() {
     'use strict';
 
-    const API_BASE_URL = 'http://localhost:5000/api';
+    // 13.229.209.197
+
+    // const API_BASE_URL = 'http://localhost:5000/api';
+
+    const API_BASE_URL = 'http://13.229.209.197/api';
 
     // const API_BASE_URL = 'https://restaurant-system-1e3p.onrender.com/api';
 
