@@ -1,10 +1,16 @@
-ALTER USER 'ur0lt9v6cz8jejzp'@'bionncrs1ulmhyjsdsud-mysql.services.clever-cloud.com' WITH MAX_USER_CONNECTIONS 20; -- Hoặc một số cao hơn
-FLUSH PRIVILEGES;
-CREATE DATABASE IF NOT EXISTS bionncrs1ulmhyjsdsud CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
-USE bionncrs1ulmhyjsdsud;
+-- 00. Nếu lúc đầu mà bạn chưa tạo Schema lúc tạo RDS
+CREATE DATABASE IF NOT EXISTS ors CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;  
+
+-- 01. Dùng Schema 
+USE ors;
+
+-- Những Command để thử sau khi đã tạo các bảng
 select * from users;
 select * from orders;
+drop database orsdb;
+drop table users;
 
+-- 02. Tạo bảng users 
 CREATE TABLE IF NOT EXISTS users (
     id INT AUTO_INCREMENT PRIMARY KEY,
     fullname VARCHAR(255) NOT NULL,
@@ -19,6 +25,7 @@ CREATE TABLE IF NOT EXISTS users (
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 
+-- 03. Tạo bảng products
 CREATE TABLE IF NOT EXISTS products (
     id INT AUTO_INCREMENT PRIMARY KEY,
     title VARCHAR(255) NOT NULL,
@@ -31,6 +38,7 @@ CREATE TABLE IF NOT EXISTS products (
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 
+-- 04. Tạo bảng orders
 CREATE TABLE IF NOT EXISTS orders (
     id VARCHAR(50) PRIMARY KEY,
     user_phone VARCHAR(15),
@@ -49,6 +57,7 @@ CREATE TABLE IF NOT EXISTS orders (
     -- FOREIGN KEY (user_phone) REFERENCES users(phone) ON DELETE SET NULL ON UPDATE CASCADE -- Cân nhắc thêm khóa ngoại
 );
 
+-- 05. Tạo bảng order_items
 CREATE TABLE IF NOT EXISTS order_items (
     id INT AUTO_INCREMENT PRIMARY KEY,
     order_id VARCHAR(50) NOT NULL,
@@ -60,6 +69,7 @@ CREATE TABLE IF NOT EXISTS order_items (
     FOREIGN KEY (product_id) REFERENCES products(id) ON DELETE RESTRICT ON UPDATE CASCADE -- Hoặc SET NULL nếu sản phẩm có thể bị xóa mà vẫn muốn giữ đơn hàng
 );
 
+-- 06. Tạo bảng refresh_tokens
 CREATE TABLE refresh_tokens (
     id INT AUTO_INCREMENT PRIMARY KEY,
     user_id INT NOT NULL,
@@ -68,12 +78,30 @@ CREATE TABLE refresh_tokens (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 );
+
 CREATE INDEX idx_refresh_token_user_id ON refresh_tokens(user_id);
 
-INSERT INTO users (fullname, phone, password, user_type, status, email, address)
-VALUES ('Admin', '0938719116', 'leminhtuan123', 1, TRUE, 'admin@ẽample.com', '28/1a')
-ON DUPLICATE KEY UPDATE fullname = VALUES(fullname), password = VALUES(password), user_type = VALUES(user_type), status = VALUES(status), email = VALUES(email), address = VALUES(address);
+-- 07. Tạo bảng cart
+CREATE TABLE IF NOT EXISTS cart (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    product_id INT NOT NULL,
+    price DECIMAL(10,2) NOT NULL,
+    title VARCHAR(255) NOT NULL,
+    img_url VARCHAR(512),
+    quantity INT NOT NULL,
+    note TEXT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
+    FOREIGN KEY (product_id) REFERENCES products(id) ON DELETE CASCADE
+);
 
+-- INSERT INTO users (fullname, phone, password, user_type, status, email, address)
+-- VALUES ('Admin', '0909773173', '0812-haminhtri', 1, TRUE, 'admin@ttvres.com', '123/123abc')
+-- ON DUPLICATE KEY UPDATE fullname = VALUES(fullname), password = VALUES(password), user_type = VALUES(user_type), status = VALUES(status), email = VALUES(email), address = VALUES(address);
+
+--  08. Hãy chọn tất cả để nhập vào bảng products
 INSERT INTO products (title, img_url, category, price, description, status) VALUES
 ('Nấm đùi gà xào cháy tỏi', './assets/img/products/nam-dui-ga-chay-toi.jpeg', 'Món mặn', 200000, 'Một Món chay ngon miệng với nấm đùi gà thái chân hương, xào săn với lửa và thật nhiều tỏi băm, nêm nếm với mắm và nước tương chay, món ngon đưa cơm và rất dễ ăn cả cho người lớn và trẻ nhỏ.', TRUE),
 ('Rau xào ngũ sắc', './assets/img/products/rau-xao-ngu-sac.png', 'Món mặn', 180000, 'Rau củ quả theo mùa tươi mới xào với nước mắm chay, gia vị để giữ được hương vị ngọt tươi nguyên thủy của rau củ, một món nhiều vitamin và chất khoáng, rất dễ ăn.', TRUE),
@@ -135,22 +163,3 @@ INSERT INTO products (title, img_url, category, price, description, status) VALU
 ('Gỏi khô bò (1 suất)', './assets/img/products/goi-bo-kho.jpg', 'Món ăn vặt', 60000, 'Thơm ngon đến từng sợi bò.', TRUE),
 ('Hoành thánh tôm (10 viên)', './assets/img/products/hoanh_thanh.jpg', 'Món mặn', 130000, 'Những miếng há cảo, sủi cảo, hoành thánh với phần nhân tôm, sò điệp, hải sản tươi ngon hay nhân thịt heo thơm ngậy chắc chắn sẽ khiến bất kỳ ai thưởng thức đều cảm thấy rất ngon miệng.', TRUE),
 ('Nước ép dâu tây', './assets/img/products/nuoc-ep-dau-tay.jpg', 'Nước uống', 100000, 'Dâu tây ăn nguyên quả ngon ngọt, có cả quả dôn dốt chua, màu đỏ mọng trông cực yêu. Không chỉ ngon miệng mà đồ uống từ dâu tây còn có công dụng bảo vệ sức khỏe, sáng mắt, đẹp da, thon gọn vóc dáng. Làm giảm nguy cơ mắc bệnh về mỡ máu, chống viêm,…', TRUE);
-
-DELETE FROM users WHERE phone = '0938719116';
-SELECT 'Database setup and data insertion complete.' AS Status;
-
--- Updated cart table with img_url VARCHAR(512)
-CREATE TABLE IF NOT EXISTS cart (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    user_id INT NOT NULL,
-    product_id INT NOT NULL,
-    price DECIMAL(10,2) NOT NULL,
-    title VARCHAR(255) NOT NULL,
-    img_url VARCHAR(512),
-    quantity INT NOT NULL,
-    note TEXT,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
-    FOREIGN KEY (product_id) REFERENCES products(id) ON DELETE CASCADE
-);

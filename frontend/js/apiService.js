@@ -5,7 +5,8 @@
 
     // const API_BASE_URL = 'http://localhost:5000/api';
 
-    const API_BASE_URL = "http://13.229.209.197:5000/api";
+    // const API_BASE_URL = "http://13.229.209.197:5000/api";
+    const API_BASE_URL = "https://dq4d6ifbje5ff.cloudfront.net/api";
 
     // const API_BASE_URL = 'https://restaurant-system-1e3p.onrender.com/api';
 
