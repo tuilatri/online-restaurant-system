@@ -68,7 +68,6 @@ The project follows a modern, decoupled client-server architecture, which ensure
 | **Frontend**  | `HTML5`, `CSS3`, `JavaScript (ES6+)`, `Vanilla JS`       |
 | **Backend**   | `Node.js`, `Express.js`, `CORS`, `JWT`, `bcrypt.js`, `Multer` |
 | **Database**  | `MySQL`                                                  |
-| **Deployment**| `AWS`, `Render`, `Heroku`, `Vercel` (or similar platforms) |
 
 ## Project Structure
 ```
